@@ -15,29 +15,24 @@ public class Differ {
         keys.addAll(data1.keySet());
         keys.addAll(data2.keySet());
 
-        List<Map<String, Object>> result = new ArrayList<>();
-        for (String key :  keys) {
-            Map<String, Object> map = new LinkedHashMap<>();
-            if (data1.containsKey(key) && !data2.containsKey(key)) {
-                map.put("key", key);
-                map.put("oldValue", data1.get(key));
-                map.put("status", "removed");
+        StringBuilder result = new StringBuilder();
+        result.append("{\n");
+
+        for (var key : keys) {
+            if (data1.containsKey(key) && data2.containsKey(key)) {
+                if (data1.get(key).equals(data2.get(key))) {
+                    result.append("    ").append(key).append(": ").append(data1.get(key)).append("\n");
+                } else {
+                    result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
+                    result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
+                }
+            } else if (data1.containsKey(key) && !data2.containsKey(key)) {
+                result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
             } else if (!data1.containsKey(key) && data2.containsKey(key)) {
-                map.put("key", key);
-                map.put("newValue", data2.get(key));
-                map.put("status", "added");
-            } else if (!Objects.equals(data1.get(key), data2.get(key))) {
-                map.put("key", key);
-                map.put("oldValue", data1.get(key));
-                map.put("newValue", data2.get(key));
-                map.put("status", "updated");
-            } else {
-                map.put("key", key);
-                map.put("oldValue", data1.get(key));
-                map.put("status", "unchanged");
+                result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
             }
-            result.add(map);
         }
+        result.append("}");
 
         return result.toString();
     }
