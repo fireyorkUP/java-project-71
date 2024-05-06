@@ -21,7 +21,7 @@ class App implements Callable {
     @Parameters(paramLabel = "filepath2", description = "path to second file")
     private String filePath2;
     public static void main(String[] args) throws Exception {
-
+        Differ.generate("src/main/java/hexlet/code/JsonS/Json1.json", "src/main/java/hexlet/code/JsonS/Json2.json");
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }
@@ -30,4 +30,5 @@ class App implements Callable {
     public Object call() throws Exception {
         return null;
     }
+
 }
