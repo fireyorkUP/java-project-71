@@ -21,14 +21,19 @@ class App implements Callable {
     @Parameters(paramLabel = "filepath2", description = "path to second file")
     private String filePath2;
     public static void main(String[] args) throws Exception {
-        Differ.generate("src/main/java/hexlet/code/JsonS/Json1.json", "src/main/java/hexlet/code/JsonS/Json2.json");
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }
 
     @Override
     public Object call() throws Exception {
-        return null;
+        try {
+            System.out.println(Differ.generate(filePath1, filePath2));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return 1;
+        }
+        return 0;
     }
 
 }
