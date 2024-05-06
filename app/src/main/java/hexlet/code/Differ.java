@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Differ {
 
-    public static String generate(String filepath1, String filepath2) throws Exception {
+    public static String generate(String filepath1, String filepath2, String format) throws Exception {
         Map<String, Object> data1 = getData(getContent(filepath1));
         Map<String, Object> data2 = getData(getContent(filepath2));
 
@@ -15,26 +15,24 @@ public class Differ {
         keys.addAll(data1.keySet());
         keys.addAll(data2.keySet());
 
-        StringBuilder result = new StringBuilder();
-        result.append("{\n");
+        TreeMap<String, Differences> result = new TreeMap<>();
 
         for (var key : keys) {
-            if (data1.containsKey(key) && data2.containsKey(key)) {
-                if (data1.get(key).equals(data2.get(key))) {
-                    result.append("    ").append(key).append(": ").append(data1.get(key)).append("\n");
-                } else {
-                    result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
-                    result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
-                }
-            } else if (data1.containsKey(key) && !data2.containsKey(key)) {
-                result.append("  - ").append(key).append(": ").append(data1.get(key)).append("\n");
-            } else if (!data1.containsKey(key) && data2.containsKey(key)) {
-                result.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
+            Object oldValue = data1.get(key);
+            Object newValue = data2.get(key);
+
+            if (oldValue == null && !data1.containsKey(key)) {
+                result.put(key, new Differences(oldValue, newValue, "added"));
+            } else if (newValue == null && !data2.containsKey(key)) {
+                result.put(key, new Differences(oldValue, newValue, "removed"));
+            } else if (!Objects.equals(oldValue, newValue)) {
+                result.put(key, new Differences(oldValue, newValue, "changed"));
+            } else {
+                result.put(key, new Differences(oldValue, newValue, "unchanged"));
             }
         }
-        result.append("}");
 
-        return result.toString();
+        return Formatter.formatter(result, format);
     }
 
     private static String getContent(String filepath) throws Exception {

@@ -17,7 +17,8 @@ public class AppTest {
                   + timeout: 20
                   + verbose: true
                 }""";
-        String actual = Differ.generate(filePath1, filePath2);
+        String format = "Stylish";
+        String actual = Differ.generate(filePath1, filePath2, format);
         assertEquals(expected, actual);
     }
 }

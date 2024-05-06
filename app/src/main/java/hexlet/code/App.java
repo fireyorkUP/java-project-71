@@ -13,7 +13,7 @@ class App implements Callable {
     private static final int SUCCESS_EXIT_CODE = 0;
     private static final int ERROR_EXIT_CODE = 1;
 
-    @Option(names = {"-f", "--format"}, defaultValue = "stylish", paramLabel = "format",
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", paramLabel = "hexlet/code/format",
             description = "output format [default: ${DEFAULT-VALUE}]")
     private String format;
     @Parameters(paramLabel = "filepath1", description = "path to first file")
@@ -26,14 +26,15 @@ class App implements Callable {
     }
 
     @Override
-    public Object call() throws Exception {
+    public Integer call() throws Exception {
         try {
-            System.out.println(Differ.generate(filePath1, filePath2));
+            System.out.println(Differ.generate(filePath1, filePath2, format));
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return 1;
+            return ERROR_EXIT_CODE;
         }
-        return 0;
+
+        return SUCCESS_EXIT_CODE;
     }
 
 }
