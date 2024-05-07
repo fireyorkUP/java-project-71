@@ -12,14 +12,19 @@ public class Stylish {
             var value = keyS.getValue();
 
             if (value.tapDifferences().equals("unchanged")) {
-                resultString.append("    ").append(key).append(": ").append(value.getOldValue()).append("\n");
+                resultString.append("    ").append(key).append(": ").append(value.getOldValue())
+                        .append("\n");
             } else if (value.tapDifferences().equals("changed")) {
-                resultString.append(" ".repeat(2)).append("- ").append(key).append(": ").append(value.getOldValue()).append("\n");
-                resultString.append(" ".repeat(2)).append("+ ").append(key).append(": ").append(value.getNewValue()).append("\n");
+                resultString.append(" ".repeat(2)).append("- ").append(key).append(": ")
+                        .append(value.getOldValue()).append("\n");
+                resultString.append(" ".repeat(2)).append("+ ").append(key).append(": ")
+                        .append(value.getNewValue()).append("\n");
             } else if (value.tapDifferences().equals("removed")) {
-                resultString.append(" ".repeat(2)).append("- ").append(key).append(": ").append(value.getOldValue()).append("\n");
+                resultString.append(" ".repeat(2)).append("- ").append(key).append(": ")
+                        .append(value.getOldValue()).append("\n");
             } else if (value.tapDifferences().equals("added")) {
-                resultString.append(" ".repeat(2)).append("+ ").append(key).append(": ").append(value.getNewValue()).append("\n");
+                resultString.append(" ".repeat(2)).append("+ ").append(key).append(": ")
+                        .append(value.getNewValue()).append("\n");
             }
         }
 
