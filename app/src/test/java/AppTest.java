@@ -3,8 +3,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import hexlet.code.*;
 public class AppTest {
 
-    String filePath1 = "src/test/resources/JsonS/Json1.json";
-    String filePath2 = "src/test/resources/JsonS/Json2.json";
+    String filePath1 = "src/test/resources/Json1.json";
+    String filePath2 = "src/test/resources/Json2.json";
 
     @Test
     public void testCall() throws Exception {
