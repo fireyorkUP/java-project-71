@@ -1,6 +1,6 @@
+import hexlet.code.Differ;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import hexlet.code.*;
 public class AppTest {
 
     String filePath1 = "src/test/resources/Json1.json";
