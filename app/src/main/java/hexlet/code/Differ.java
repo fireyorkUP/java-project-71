@@ -42,7 +42,6 @@ public class Differ {
     private static String getAbsolutePath(String filepath) throws Exception {
         try {
             Path path = Paths.get(filepath).toAbsolutePath().normalize();
-
             return Files.readString(path);
         } catch (Exception e) {
             throw new Exception(e.getMessage());

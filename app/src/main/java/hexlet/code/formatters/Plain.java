@@ -6,25 +6,26 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Plain {
-    public static String propertyValue(Object value1) {
-        if (value1 == null) {
+    public static String propertyValue(Object value) {
+        if (value == null) {
             return "null";
-        } else if (value1 instanceof String) {
-            return "'" + value1 + "'";
-        } else if (value1 instanceof Map || value1 instanceof List) {
+        } else if (value instanceof String) {
+            return "'" + value + "'";
+        } else if (value instanceof Map || value instanceof List) {
             return "[complex value]";
         }
-        return value1.toString();
+        return value.toString();
     }
 
     public static String render(TreeMap<String, Differences> map) throws Exception {
         StringBuilder resultString = new StringBuilder("{\n");
 
         for (var keyS : map.entrySet()) {
-            var type = keyS.getValue().tapDifferences();
+            var value = keyS.getValue();
             var key = keyS.getKey();
-            var formattedOldValue = propertyValue(keyS.getValue().getOldValue());
-            var formattedNewValue = propertyValue(keyS.getValue().getNewValue());
+            var type = value.getState();
+            var formattedOldValue = propertyValue(value.getOldValue());
+            var formattedNewValue = propertyValue(value.getNewValue());
 
             switch (type) {
                 case "added":

@@ -3,13 +3,12 @@ package hexlet.code;
 public class Differences {
     private final Object oldValue;
     private final Object newValue;
+    private final String state;
 
-    private final String correct;
-
-    public Differences(Object oldValue, Object newValue, String correct) {
+    public Differences(Object oldValue, Object newValue, String state) {
         this.oldValue = oldValue;
         this.newValue = newValue;
-        this.correct = correct;
+        this.state = state;
     }
 
     public Object getOldValue() {
@@ -19,7 +18,7 @@ public class Differences {
         return newValue;
     }
 
-    public String tapDifferences() {
-        return correct;
+    public String getState() {
+        return state;
     }
 }
