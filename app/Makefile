@@ -8,9 +8,9 @@ version:
 
 # запустить исполняемый файл app с двумя параметрами
 run-dist:
-	./build/install/app/bin/app src/test/resources/JsonS/Json1.json src/test/resources/JsonS/Json2.json
+	./build/install/app/bin/app src/test/resources/Json1.json src/test/resources/Json2.json
 
 build:
-
+	./gradlew clean build
 
 .PHONY: buildbuild/install/app/bin/app
