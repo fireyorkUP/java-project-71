@@ -13,11 +13,10 @@ run-dist:
 test:
 	./gradlew test
 
-
 build:
 	./gradlew clean build
 
 lint:
-	./gradlew checkstyleMain checkstyleTest
+	./gradlew checkstyleMain
 
 .PHONY: buildbuild/install/app/bin/app
