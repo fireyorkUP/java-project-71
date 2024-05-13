@@ -10,7 +10,14 @@ version:
 run-dist:
 	./build/install/app/bin/app src/test/resources/Json1.json src/test/resources/Json2.json
 
+test:
+	./gradlew test
+
+
 build:
 	./gradlew clean build
+
+lint:
+	./gradlew checkstyleMain checkstyleTest
 
 .PHONY: buildbuild/install/app/bin/app
