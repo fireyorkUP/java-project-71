@@ -13,7 +13,7 @@ class App implements Callable {
     private static final int SUCCESS_EXIT_CODE = 0;
     private static final int ERROR_EXIT_CODE = 1;
 
-    @Option(names = {"-f", "--format"}, defaultValue = "stylish", paramLabel = "hexlet/code/format",
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", paramLabel = "hexlet/code/formatters",
             description = "output format [default: ${DEFAULT-VALUE}]")
     private String format;
     @Parameters(paramLabel = "filepath1", description = "path to first file")

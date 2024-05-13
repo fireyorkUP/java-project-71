@@ -1,4 +1,4 @@
-package hexlet.code.format;
+package hexlet.code.formatters;
 
 import hexlet.code.Differences;
 import java.util.TreeMap;
