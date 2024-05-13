@@ -30,8 +30,8 @@ public class Parser {
 
     private static Map<String, Object> parseYML(String filepath) throws Exception {
         try {
-            ObjectMapper mapper = new YAMLMapper();
-            return mapper.readValue(filepath, new TypeReference<>() {
+            ObjectMapper objectmapper = new YAMLMapper();
+            return objectmapper.readValue(filepath, new TypeReference<>() {
             });
         } catch (Exception e) {
             throw new Exception(e.getMessage());
