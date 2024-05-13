@@ -28,22 +28,15 @@ public class Plain {
             var formattedNewValue = propertyValue(value.getNewValue());
 
             switch (type) {
-                case "added":
-                    resultString.append("Property '").append(key).append("' was added with value: ")
-                            .append(formattedNewValue).append("\n");
-                    break;
-                case "removed":
-                    resultString.append("Property '").append(key).append("' was removed")
-                            .append("\n");
-                    break;
-                case "changed":
-                    resultString.append("Property '").append(key).append("' was updated. From ")
-                            .append(formattedOldValue).append(" to ").append(formattedNewValue).append("\n");
-                    break;
-                case "unchanged":
-                    break;
-                default:
-                    throw new Exception("Unknown type: '" + type + "'");
+                case "added" -> resultString.append("Property '").append(key).append("' was added with value: ")
+                        .append(formattedNewValue).append("\n");
+                case "removed" -> resultString.append("Property '").append(key).append("' was removed")
+                        .append("\n");
+                case "changed" -> resultString.append("Property '").append(key).append("' was updated. From ")
+                        .append(formattedOldValue).append(" to ").append(formattedNewValue).append("\n");
+                case "unchanged" -> {
+                }
+                default -> throw new Exception("Unknown type: '" + type + "'");
             }
         }
         resultString.append("}");

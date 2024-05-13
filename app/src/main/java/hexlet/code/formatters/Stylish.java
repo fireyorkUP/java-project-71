@@ -15,21 +15,12 @@ public class Stylish {
             var newValue = value.getNewValue();
 
             switch (type) {
-                case "unchanged":
-                    resultString.append("    ").append(key).append(": ").append(oldValue).append("\n");
-                    break;
-                case "changed":
-                    resultString.append("  - ").append(key).append(": ").append(oldValue).append("\n")
-                            .append("  + ").append(key).append(": ").append(newValue).append("\n");
-                    break;
-                case "removed":
-                    resultString.append("  - ").append(key).append(": ").append(oldValue).append("\n");
-                    break;
-                case "added":
-                    resultString.append("  + ").append(key).append(": ").append(newValue).append("\n");
-                    break;
-                default:
-                    throw new Exception("Unknown type: '" + type + "'");
+                case "unchanged" -> resultString.append("    ").append(key).append(": ").append(oldValue).append("\n");
+                case "changed" -> resultString.append("  - ").append(key).append(": ").append(oldValue).append("\n")
+                        .append("  + ").append(key).append(": ").append(newValue).append("\n");
+                case "removed" -> resultString.append("  - ").append(key).append(": ").append(oldValue).append("\n");
+                case "added" -> resultString.append("  + ").append(key).append(": ").append(newValue).append("\n");
+                default -> throw new Exception("Unknown type: '" + type + "'");
             }
         }
 

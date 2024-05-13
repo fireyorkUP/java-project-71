@@ -21,19 +21,20 @@ public class Differ {
 
         TreeMap<String, Differences> result = new TreeMap<>();
 
-        for (var key : keys) {
+        for (String key : keys) {
             Object oldValue = data1.get(key);
             Object newValue = data2.get(key);
+            String changeType = "unchanged";
 
             if (oldValue == null && !data1.containsKey(key)) {
-                result.put(key, new Differences(oldValue, newValue, "added"));
+                changeType = "added";
             } else if (newValue == null && !data2.containsKey(key)) {
-                result.put(key, new Differences(oldValue, newValue, "removed"));
+                changeType = "removed";
             } else if (!Objects.equals(oldValue, newValue)) {
-                result.put(key, new Differences(oldValue, newValue, "changed"));
-            } else {
-                result.put(key, new Differences(oldValue, newValue, "unchanged"));
+                changeType = "changed";
             }
+
+            result.put(key, new Differences(oldValue, newValue, changeType));
         }
 
         return Formatter.formatter(result, format);
