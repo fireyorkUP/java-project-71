@@ -19,4 +19,7 @@ build:
 lint:
 	./gradlew checkstyleMain
 
+report:
+	./gradlew jacocoTestReport
+
 .PHONY: buildbuild/install/app/bin/app
