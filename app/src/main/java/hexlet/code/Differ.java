@@ -44,6 +44,14 @@ public class Differ {
         return Formatter.formatter(result, format);
     }
 
+    public static String generate(String filepath1, String filepath2) {
+        try {
+            return generate(filepath1, filepath2, "stylish");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static String getAbsolutePath(String filepath) throws Exception {
         try {
             Path path = Paths.get(filepath).toAbsolutePath().normalize();
