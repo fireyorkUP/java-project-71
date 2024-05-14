@@ -20,10 +20,12 @@ jobs:
       - run: make build
       - run: make lint
       - run: make test
+      - name: Set execute permissions for cc-test-reporter
+        run: chmod +x ./app/cc-test-reporter
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
-          CC_TEST_REPORTER_ID: "2cbf05a6353bf6749f2921242f63e09b568199eb51343d4a7e4b73c1731043a0"
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: "${{github.workspace}}/app/src/main/java"
         with:
           coverageCommand: make report
