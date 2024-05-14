@@ -39,7 +39,9 @@ public class Plain {
                 default -> throw new Exception("Unknown type: '" + type + "'");
             }
         }
-
+        if (!resultString.isEmpty()) { // Проверяем, не пустой ли StringBuilder
+            resultString.setLength(resultString.length() - System.lineSeparator().length());
+        }
         return resultString.toString();
     }
 }

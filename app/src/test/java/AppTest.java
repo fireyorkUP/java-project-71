@@ -90,8 +90,7 @@ public class AppTest {
                 Property 'obj1' was added with value: [complex value]
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
-                Property 'setting3' was updated. From true to 'none'
-                """;
+                Property 'setting3' was updated. From true to 'none'""";
         String format = "plain";
         String actual = Differ.generate(filePath1, filePath2, format);
         assertEquals(expected, actual);
@@ -112,8 +111,7 @@ public class AppTest {
                 Property 'obj1' was added with value: [complex value]
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
-                Property 'setting3' was updated. From true to 'none'
-                """;
+                Property 'setting3' was updated. From true to 'none'""";
         String format = "plain";
         String actual = Differ.generate(filePath3, filePath4, format);
         assertEquals(expected, actual);
