@@ -3,11 +3,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AppTest {
 
-    String filePath1 = "src/test/resources/Json1.json";
-    String filePath2 = "src/test/resources/Json2.json";
+    private final String filePath1 = "src/test/resources/Json1.json";
+    private final String filePath2 = "src/test/resources/Json2.json";
 
-    String filePath3 = "src/test/resources/Yaml1.yaml";
-    String filePath4 = "src/test/resources/Yaml2.yaml";
+    private final String filePath3 = "src/test/resources/Yaml1.yaml";
+    private final String filePath4 = "src/test/resources/Yaml2.yaml";
 
     @Test
     public void testCallJson() throws Exception {
@@ -114,6 +114,94 @@ public class AppTest {
                 Property 'setting3' was updated. From true to 'none'""";
         String format = "plain";
         String actual = Differ.generate(filePath3, filePath4, format);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testJsonToJson() throws Exception {
+        String expected = """
+                {
+                  "chars1" : {
+                    "oldValue" : [ "a", "b", "c" ],
+                    "newValue" : [ "a", "b", "c" ],
+                    "state" : "unchanged"
+                  },
+                  "chars2" : {
+                    "oldValue" : [ "d", "e", "f" ],
+                    "newValue" : false,
+                    "state" : "changed"
+                  },
+                  "checked" : {
+                    "oldValue" : false,
+                    "newValue" : true,
+                    "state" : "changed"
+                  },
+                  "default" : {
+                    "oldValue" : null,
+                    "newValue" : [ "value1", "value2" ],
+                    "state" : "changed"
+                  },
+                  "id" : {
+                    "oldValue" : 45,
+                    "newValue" : null,
+                    "state" : "changed"
+                  },
+                  "key1" : {
+                    "oldValue" : "value1",
+                    "newValue" : null,
+                    "state" : "removed"
+                  },
+                  "key2" : {
+                    "oldValue" : null,
+                    "newValue" : "value2",
+                    "state" : "added"
+                  },
+                  "numbers1" : {
+                    "oldValue" : [ 1, 2, 3, 4 ],
+                    "newValue" : [ 1, 2, 3, 4 ],
+                    "state" : "unchanged"
+                  },
+                  "numbers2" : {
+                    "oldValue" : [ 2, 3, 4, 5 ],
+                    "newValue" : [ 22, 33, 44, 55 ],
+                    "state" : "changed"
+                  },
+                  "numbers3" : {
+                    "oldValue" : [ 3, 4, 5 ],
+                    "newValue" : null,
+                    "state" : "removed"
+                  },
+                  "numbers4" : {
+                    "oldValue" : null,
+                    "newValue" : [ 4, 5, 6 ],
+                    "state" : "added"
+                  },
+                  "obj1" : {
+                    "oldValue" : null,
+                    "newValue" : {
+                      "nestedKey" : "value",
+                      "isNested" : true
+                    },
+                    "state" : "added"
+                  },
+                  "setting1" : {
+                    "oldValue" : "Some value",
+                    "newValue" : "Another value",
+                    "state" : "changed"
+                  },
+                  "setting2" : {
+                    "oldValue" : 200,
+                    "newValue" : 300,
+                    "state" : "changed"
+                  },
+                  "setting3" : {
+                    "oldValue" : true,
+                    "newValue" : "none",
+                    "state" : "changed"
+                  }
+                }""";
+        String format = "json";
+        String actual = Differ.generate(filePath1, filePath2, format);
         assertEquals(expected, actual);
     }
 }

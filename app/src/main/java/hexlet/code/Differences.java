@@ -11,14 +11,14 @@ public class Differences {
         this.state = state;
     }
 
-    public Object getOldValue() {
+    public final Object getOldValue() {
         return oldValue;
     }
-    public Object getNewValue() {
+    public final Object getNewValue() {
         return newValue;
     }
 
-    public String getState() {
+    public final String getState() {
         return state;
     }
 }

@@ -8,7 +8,7 @@ public class Json {
     public static String render(TreeMap<String, Differences> map) throws Exception {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.writeValueAsString(map);
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
