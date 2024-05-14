@@ -78,7 +78,6 @@ public class AppTest {
     @Test
     public void testCallJsonPlain() throws Exception {
         String expected = """
-                {
                 Property 'chars2' was updated. From [complex value] to false
                 Property 'checked' was updated. From false to true
                 Property 'default' was updated. From null to [complex value]
@@ -92,7 +91,7 @@ public class AppTest {
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
                 Property 'setting3' was updated. From true to 'none'
-                }""";
+                """;
         String format = "plain";
         String actual = Differ.generate(filePath1, filePath2, format);
         assertEquals(expected, actual);
@@ -101,7 +100,6 @@ public class AppTest {
     @Test
     public void testCallYamlPlain() throws Exception {
         String expected = """
-                {
                 Property 'chars2' was updated. From [complex value] to false
                 Property 'checked' was updated. From false to true
                 Property 'default' was updated. From null to [complex value]
@@ -115,7 +113,7 @@ public class AppTest {
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
                 Property 'setting3' was updated. From true to 'none'
-                }""";
+                """;
         String format = "plain";
         String actual = Differ.generate(filePath3, filePath4, format);
         assertEquals(expected, actual);

@@ -18,7 +18,7 @@ public class Plain {
     }
 
     public static String render(TreeMap<String, Differences> map) throws Exception {
-        StringBuilder resultString = new StringBuilder("{\n");
+        StringBuilder resultString = new StringBuilder();
 
         for (var keyS : map.entrySet()) {
             var value = keyS.getValue();
@@ -39,7 +39,7 @@ public class Plain {
                 default -> throw new Exception("Unknown type: '" + type + "'");
             }
         }
-        resultString.append("}");
+
         return resultString.toString();
     }
 }
