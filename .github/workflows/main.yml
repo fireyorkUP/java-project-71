@@ -20,11 +20,11 @@ jobs:
       - run: make build
       - run: make lint
       - run: make test
-      #- name: Publish code coverage
-      # uses: paambaati/codeclimate-action@v3.1.1
-      # env:
-      #   CC_TEST_REPORTER_ID: "2cbf05a6353bf6749f2921242f63e09b568199eb51343d4a7e4b73c1731043a0"
-      #   JACOCO_SOURCE_PATH: "${{github.workspace}}/app/src/main/java"
-      # with:
-      #   coverageCommand: make report
-      #   coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+      - name: Publish code coverage
+        uses: paambaati/codeclimate-action@v5.0.0
+        env:
+          CC_TEST_REPORTER_ID: "2cbf05a6353bf6749f2921242f63e09b568199eb51343d4a7e4b73c1731043a0"
+          JACOCO_SOURCE_PATH: "${{github.workspace}}/app/src/main/java"
+        with:
+          coverageCommand: make report
+          coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
