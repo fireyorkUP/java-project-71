@@ -1,18 +1,17 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differences;
-import java.util.TreeMap;
+import java.util.List;
+import java.util.Map;
 
 public class Stylish {
-    public static String render(TreeMap<String, Differences> map) throws Exception {
+    public static String render(List<Map<String, Object>> list) throws Exception {
         StringBuilder resultString = new StringBuilder("{\n");
 
-        for (var keyS : map.entrySet()) {
-            var key = keyS.getKey();
-            var value = keyS.getValue();
-            var type = value.getState();
-            var oldValue = value.getOldValue();
-            var newValue = value.getNewValue();
+        for (var keyS : list) {
+            var key = keyS.get("key");
+            var type = keyS.get("changeType").toString();
+            var oldValue = keyS.get("oldValue");
+            var newValue = keyS.get("newValue");
 
             switch (type) {
                 case "unchanged" -> resultString.append("    ").append(key).append(": ").append(oldValue).append("\n");

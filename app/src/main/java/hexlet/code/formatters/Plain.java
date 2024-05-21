@@ -1,9 +1,7 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differences;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Plain {
     public static String propertyValue(Object value) {
@@ -17,15 +15,14 @@ public class Plain {
         return value.toString();
     }
 
-    public static String render(TreeMap<String, Differences> map) throws Exception {
+    public static String render(List<Map<String, Object>> list) throws Exception {
         StringBuilder resultString = new StringBuilder();
 
-        for (var keyS : map.entrySet()) {
-            var value = keyS.getValue();
-            var key = keyS.getKey();
-            var type = value.getState();
-            var formattedOldValue = propertyValue(value.getOldValue());
-            var formattedNewValue = propertyValue(value.getNewValue());
+        for (var keyS : list) {
+            var key = keyS.get("key");
+            var type = keyS.get("changeType").toString();
+            var formattedOldValue = propertyValue(keyS.get("oldValue"));
+            var formattedNewValue = propertyValue(keyS.get("newValue"));
 
             switch (type) {
                 case "added" -> resultString.append("Property '").append(key).append("' was added with value: ")
@@ -39,7 +36,7 @@ public class Plain {
                 default -> throw new Exception("Unknown type: '" + type + "'");
             }
         }
-        if (!resultString.isEmpty()) { // Проверяем, не пустой ли StringBuilder
+        if (!resultString.isEmpty()) {
             resultString.setLength(resultString.length() - System.lineSeparator().length());
         }
         return resultString.toString();
