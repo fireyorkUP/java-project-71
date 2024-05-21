@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "Gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
 
-class App implements Callable {
+public class App implements Callable {
     private static final int SUCCESS_EXIT_CODE = 0;
     private static final int ERROR_EXIT_CODE = 1;
 

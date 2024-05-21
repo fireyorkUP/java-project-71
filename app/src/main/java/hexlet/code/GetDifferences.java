@@ -1,7 +1,7 @@
 package hexlet.code;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -18,7 +18,7 @@ public class GetDifferences {
         List<Map<String, Object>> resultList = new ArrayList<>();
 
         for (String key : keys) {
-            Map<String, Object> map = new HashMap<>();
+            Map<String, Object> map = new LinkedHashMap<>();
             Object oldValue = data1.get(key);
             Object newValue = data2.get(key);
             String changeType = "unchanged";
