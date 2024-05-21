@@ -3,11 +3,10 @@ package hexlet.code;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Objects;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+
+
+import static hexlet.code.GetDifferences.getDifferences;
 
 
 public class Differ {
@@ -19,29 +18,7 @@ public class Differ {
         Map<String, Object> data1 = getData(firstFileAbsolutePath, filepath1);
         Map<String, Object> data2 = getData(secondFileAbsolutePath, filepath2);
 
-        Set<String> keys = new TreeSet<>();
-        keys.addAll(data1.keySet());
-        keys.addAll(data2.keySet());
-
-        TreeMap<String, Differences> result = new TreeMap<>();
-
-        for (String key : keys) {
-            Object oldValue = data1.get(key);
-            Object newValue = data2.get(key);
-            String changeType = "unchanged";
-
-            if (oldValue == null && !data1.containsKey(key)) {
-                changeType = "added";
-            } else if (newValue == null && !data2.containsKey(key)) {
-                changeType = "removed";
-            } else if (!Objects.equals(oldValue, newValue)) {
-                changeType = "changed";
-            }
-
-            result.put(key, new Differences(oldValue, newValue, changeType));
-        }
-
-        return Formatter.formatter(result, format);
+        return Formatter.formatter(getDifferences(data1, data2), format);
     }
 
     public static String generate(String filepath1, String filepath2) {
